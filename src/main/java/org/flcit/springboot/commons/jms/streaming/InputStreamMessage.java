@@ -19,9 +19,9 @@ package org.flcit.springboot.commons.jms.streaming;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.jms.JMSException;
-import javax.jms.MessageEOFException;
-import javax.jms.StreamMessage;
+import jakarta.jms.JMSException;
+import jakarta.jms.MessageEOFException;
+import jakarta.jms.StreamMessage;
 
 /**
  * 

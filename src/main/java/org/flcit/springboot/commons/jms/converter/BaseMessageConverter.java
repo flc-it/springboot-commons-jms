@@ -22,13 +22,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.jms.BytesMessage;
-import javax.jms.JMSException;
-import javax.jms.MapMessage;
-import javax.jms.Message;
-import javax.jms.Session;
-import javax.jms.StreamMessage;
-import javax.jms.TextMessage;
+import jakarta.jms.BytesMessage;
+import jakarta.jms.JMSException;
+import jakarta.jms.MapMessage;
+import jakarta.jms.Message;
+import jakarta.jms.Session;
+import jakarta.jms.StreamMessage;
+import jakarta.jms.TextMessage;
 
 import org.springframework.jms.support.converter.MessageConversionException;
 import org.springframework.jms.support.converter.MessageConverter;
@@ -109,18 +109,18 @@ public abstract class BaseMessageConverter implements MessageConverter {
     }
 
     private <T> T getResult(final Message message, final Class<T> classResult) throws JMSException {
-        if (message instanceof TextMessage) {
-            return fromString(((TextMessage) message).getText(), classResult);
-        } else if (message instanceof BytesMessage) {
-            final byte[] bytes = new byte[(int) ((BytesMessage) message).getBodyLength()];
+        if (message instanceof TextMessage textMessage) {
+            return fromString(textMessage.getText(), classResult);
+        } else if (message instanceof BytesMessage bytesMessage) {
+            final byte[] bytes = new byte[(int) bytesMessage.getBodyLength()];
             ((BytesMessage) message).readBytes(bytes);
             return fromBytes(bytes, classResult);
-        } else if (message instanceof StreamMessage) {
-            try (InputStreamMessage is = new InputStreamMessage((StreamMessage) message)) {
+        } else if (message instanceof StreamMessage streamMessage) {
+            try (InputStreamMessage is = new InputStreamMessage(streamMessage)) {
                 return fromStream(is, classResult);
             }
         } else if (message instanceof MapMessage) {
-            return fromMap(((MapMessage) message).getBody(Map.class), classResult);
+            return fromMap(message.getBody(Map.class), classResult);
         }
         throw new IllegalStateException("Message type is not supported : " + message.getClass().getName());
     }

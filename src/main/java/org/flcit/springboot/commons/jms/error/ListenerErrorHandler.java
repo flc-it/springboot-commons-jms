@@ -56,7 +56,7 @@ public class ListenerErrorHandler implements ErrorHandler {
             catchTransactionException((TransactionException) t.getCause());
         }
         // Exception lors d'une opération sur la Base de données
-        else if (ClassUtils.safeIsAssignableFrom("javax.persistence.PersistenceException", t.getCause().getClass())) {
+        else if (ClassUtils.safeIsAssignableFrom("jakarta.persistence.PersistenceException", t.getCause().getClass())) {
             catchPersistenceException((Exception) t.getCause());
         }
         // Exception lors de la lecture et du parsing du message JMS

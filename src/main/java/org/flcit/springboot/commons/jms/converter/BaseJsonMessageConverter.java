@@ -37,7 +37,7 @@ public abstract class BaseJsonMessageConverter extends BaseMessageConverter {
     private static final String IOEXCEPTION_MESSAGE = "Une erreur s'est produite lors de la convertion du message";
 
     private static final ObjectMapper objectMapper = new ObjectMapper()
-            .setSerializationInclusion(Include.NON_EMPTY)
+            .setDefaultPropertyInclusion(Include.NON_EMPTY)
             .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
             .enable(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL);
 

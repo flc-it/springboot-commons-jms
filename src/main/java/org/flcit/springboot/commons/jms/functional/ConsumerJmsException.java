@@ -18,7 +18,7 @@ package org.flcit.springboot.commons.jms.functional;
 
 import java.util.Objects;
 
-import javax.jms.JMSException;
+import jakarta.jms.JMSException;
 
 /**
  * @param <T>

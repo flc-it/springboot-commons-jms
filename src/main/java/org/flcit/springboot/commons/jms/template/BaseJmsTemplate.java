@@ -18,7 +18,7 @@ package org.flcit.springboot.commons.jms.template;
 
 import java.io.InputStream;
 
-import javax.jms.ConnectionFactory;
+import jakarta.jms.ConnectionFactory;
 
 import org.springframework.jms.core.JmsTemplate;
 
